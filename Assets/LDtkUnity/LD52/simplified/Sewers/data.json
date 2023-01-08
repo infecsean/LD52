@@ -1,0 +1,16 @@
+{
+	"identifier": "Sewers",
+	"uniqueIdentifer": "1cb3c390-7820-11ed-bc57-358b0c957a46",
+	"x": 464,
+	"y": 0,
+	"width": 256,
+	"height": 256,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields" : {},
+	"layers": [
+		"MainLevel.png",
+		"Background.png"
+	],
+	"entities" : {}
+}
