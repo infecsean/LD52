@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   organSprite: {fileID: 21300000, guid: 1a9bd59b74302174a86e62e8db9f5bb0, type: 3}
   organName: Lung
-  preserveTime: 4
+  preserveTime: 240
   marketPrice: 1000000
   successRate: 0.4
+  isItem: 0

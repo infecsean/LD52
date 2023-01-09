@@ -1,0 +1,21 @@
+{
+	"identifier": "Level_6",
+	"uniqueIdentifer": "a3eb2c60-7820-11ed-9299-2fb3dd7145ff",
+	"x": 1248,
+	"y": -816,
+	"width": 256,
+	"height": 256,
+	"bgColor": "#696A79",
+	"neighbourLevels": [
+		{
+			"levelIid": "84464840-7820-11ed-9299-5da5b5883459",
+			"dir": "s"
+		}
+	],
+	"customFields" : {},
+	"layers": [
+		"MainLevel.png",
+		"Background.png"
+	],
+	"entities" : {}
+}

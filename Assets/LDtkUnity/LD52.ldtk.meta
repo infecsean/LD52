@@ -23,6 +23,10 @@ ScriptedImporter:
     _asset: {fileID: 11400000, guid: b73ff79e1b696e54cb0633bfb9df6479, type: 2}
   - _key: MainLevel_2
     _asset: {fileID: 11400000, guid: b73ff79e1b696e54cb0633bfb9df6479, type: 2}
+  - _key: MainLevel_3
+    _asset: {fileID: 11400000, guid: b73ff79e1b696e54cb0633bfb9df6479, type: 2}
+  - _key: MainLevel_4
+    _asset: {fileID: 11400000, guid: b73ff79e1b696e54cb0633bfb9df6479, type: 2}
   _entities:
   - _key: Player
     _asset: {instanceID: 0}

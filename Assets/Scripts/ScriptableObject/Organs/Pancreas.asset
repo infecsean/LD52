@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   organSprite: {fileID: 21300000, guid: 7cf52dfc9d23c354492c4812661f71a1, type: 3}
   organName: Pancreas
-  preserveTime: 10
+  preserveTime: 600
   marketPrice: 400000
   successRate: 0.8
+  isItem: 0

@@ -1,12 +1,25 @@
 {
 	"identifier": "Sewers",
 	"uniqueIdentifer": "1cb3c390-7820-11ed-bc57-358b0c957a46",
-	"x": 464,
-	"y": 0,
-	"width": 256,
-	"height": 256,
+	"x": 432,
+	"y": -112,
+	"width": 512,
+	"height": 464,
 	"bgColor": "#696A79",
-	"neighbourLevels": [],
+	"neighbourLevels": [
+		{
+			"levelIid": "e8ae59c0-7820-11ed-bc57-cd063e74e0ce",
+			"dir": "w"
+		},
+		{
+			"levelIid": "2e9bcf70-7820-11ed-9299-5f59721c6231",
+			"dir": "e"
+		},
+		{
+			"levelIid": "6dc98430-7820-11ed-9299-49323ea68f91",
+			"dir": "s"
+		}
+	],
 	"customFields" : {},
 	"layers": [
 		"MainLevel.png",

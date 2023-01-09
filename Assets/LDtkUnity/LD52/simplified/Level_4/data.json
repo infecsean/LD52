@@ -1,0 +1,25 @@
+{
+	"identifier": "Level_4",
+	"uniqueIdentifer": "6dc98430-7820-11ed-9299-49323ea68f91",
+	"x": 688,
+	"y": 352,
+	"width": 432,
+	"height": 384,
+	"bgColor": "#696A79",
+	"neighbourLevels": [
+		{
+			"levelIid": "1cb3c390-7820-11ed-bc57-358b0c957a46",
+			"dir": "n"
+		},
+		{
+			"levelIid": "2e9bcf70-7820-11ed-9299-5f59721c6231",
+			"dir": "n"
+		}
+	],
+	"customFields" : {},
+	"layers": [
+		"MainLevel.png",
+		"Background.png"
+	],
+	"entities" : {}
+}

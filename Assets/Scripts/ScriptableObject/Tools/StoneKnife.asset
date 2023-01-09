@@ -15,7 +15,7 @@ MonoBehaviour:
   toolSprite: {fileID: 21300000, guid: 42c9f6b51a2676a4bb91a0059bf634ae, type: 3}
   toolName: Stone Knife
   owned: 0
-  sharpness: 0.4
-  quality: 0.5
+  sharpness: 0.5
+  quality: 0.6
   ergonomics: 0.5
-  price: 1000
+  price: 1000000
