@@ -60,7 +60,6 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-
 	public void Move(float move, bool crouch, bool jump)
 	{
 		//// If crouching, check to see if the character can stand up
@@ -72,6 +71,10 @@ public class CharacterController2D : MonoBehaviour
 		//		crouch = true;
 		//	}
 		//}
+
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(move - transform.position.x, transform.position.y), 1000f, m_WhatIsGround);
+		Debug.DrawRay(transform.position, new Vector2(move - transform.position.x, transform.position.y), Color.blue);
+		Mathf.Clamp(move, 0, hit.distance);
 
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
