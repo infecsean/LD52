@@ -13,14 +13,8 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   conditionFunctions:
-  - functionName: CanPhone
-    parameters: 00000000
-    returnValue: 1
-  - functionName: CanBackpack
-    parameters: 00000000
-    returnValue: 1
-  - functionName: CanTool
-    parameters: 02000000
+  - functionName: TryBuy
+    parameters: 01000000
     returnValue: 1
   scriptFunctions:
   - functionName: SetPhone
@@ -30,5 +24,8 @@ MonoBehaviour:
     parameters: 
     returnValue: 0
   - functionName: SetTool
+    parameters: 
+    returnValue: 0
+  - functionName: StatCashOut
     parameters: 
     returnValue: 0

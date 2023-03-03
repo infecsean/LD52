@@ -41,18 +41,18 @@ GameObject:
   m_Component:
   - component: {fileID: 5480764379360452408}
   - component: {fileID: 5480764379360452409}
-  - component: {fileID: 5480764379360452406}
   - component: {fileID: 5480764379360452407}
   - component: {fileID: 5480764379360452404}
   - component: {fileID: 5480764379360452405}
   - component: {fileID: 5480764379360452402}
+  - component: {fileID: 1808991546}
   m_Layer: 7
   m_Name: Guard
   m_TagString: Harvestable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5480764379360452408
 Transform:
   m_ObjectHideFlags: 0
@@ -108,8 +108,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1511028641
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a648d3d8d07ec2e4a9a2e3a21521ce82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,32 +122,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5480764379360452406
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5480764379360452403}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 1}
-  m_EdgeRadius: 0
 --- !u!95 &5480764379360452407
 Animator:
   serializedVersion: 4
@@ -181,15 +155,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 400
-  m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 0
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_GroundCheck: {fileID: 5480764380068566311}
   m_CeilingCheck: {fileID: 5480764378861686226}
-  m_CrouchDisableCollider: {fileID: 5480764379360452406}
+  dashForce: 20
+  dashDuration: 0.1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -209,11 +183,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 5480764379360452404}
-  runSpeed: 10
+  runSpeed: 3
   moveInterval: 1000
   isAlive: 1
   deadSprite: {fileID: 21300000, guid: dfc04ca3c119d1b4ca24388f72e6cdbd, type: 3}
-  organObjects: []
+  organObjects:
+  - {fileID: 11400000, guid: fcdeea087ca9f8f44afc35de2d7f103d, type: 2}
+  - {fileID: 11400000, guid: 80ff94e334c64b34a936b0d9e05cab6a, type: 2}
+  - {fileID: 11400000, guid: 80ff94e334c64b34a936b0d9e05cab6a, type: 2}
+  - {fileID: 11400000, guid: 2795bc9155a8ae6458b3fedb9087585a, type: 2}
+  - {fileID: 11400000, guid: 27a66320cdacc6e4bb6491553c42aeb0, type: 2}
+  - {fileID: 11400000, guid: 8f9d39c9ac78c9a48a4615a8fb543625, type: 2}
+  stats: {fileID: 0}
+  organPrefabs: []
+  scatterArea: {fileID: 5480764379360452408}
+  scatterRadius: 2
+  scatterSpeed: 5
+  hoverSpeed: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckDistance: 10
 --- !u!50 &5480764379360452402
 Rigidbody2D:
   serializedVersion: 4
@@ -235,6 +225,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &1808991546
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5480764379360452403}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000038146973, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6181259, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &5480764380068566308
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,18 @@
 		{
 			"levelIid": "e8ae59c0-7820-11ed-bc57-cd063e74e0ce",
 			"dir": "e"
+		},
+		{
+			"levelIid": "6f66d910-7820-11ed-b639-6df5dcdbaa89",
+			"dir": "n"
+		},
+		{
+			"levelIid": "993339f0-7820-11ed-b639-91a3d18174eb",
+			"dir": "s"
+		},
+		{
+			"levelIid": "06314ba0-7820-11ed-b639-f75cc9bf619e",
+			"dir": "n"
 		}
 	],
 	"customFields" : {},

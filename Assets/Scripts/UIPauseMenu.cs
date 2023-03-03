@@ -6,6 +6,9 @@ public class UIPauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
 
+    public GameObject player;
+    public Transform spawnPoint;
+
     public GameObject uiPauseMenu;
     private GameObject mainMenu;
     private GameObject optionsMenu;
@@ -46,5 +49,10 @@ public class UIPauseMenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
+    }
+
+    public void GoBackToSpawn()
+    {
+        player.transform.position = spawnPoint.transform.position;
     }
 }

@@ -1,0 +1,21 @@
+{
+	"identifier": "Level_9",
+	"uniqueIdentifer": "bd54f3a0-7820-11ed-b639-99220076c406",
+	"x": -1632,
+	"y": -1984,
+	"width": 464,
+	"height": 464,
+	"bgColor": "#696A79",
+	"neighbourLevels": [
+		{
+			"levelIid": "993339f0-7820-11ed-b639-91a3d18174eb",
+			"dir": "e"
+		}
+	],
+	"customFields" : {},
+	"layers": [
+		"MainLevel.png",
+		"Background.png"
+	],
+	"entities" : {}
+}

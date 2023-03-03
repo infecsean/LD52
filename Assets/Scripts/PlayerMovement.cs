@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+	public Camera mainCamera;
 	public CharacterController2D controller;
 	public Animator animator;
 	public PlayerStats stats;
 
 	public float runSpeed = 40f;
-	public float leapSpeed = 40;
 
 	float horizontalMove = 0f;
 	bool jump = false;
 
-	private bool harvestable = false;
 	private GameObject harvestTarget;
 
 	// Update is called once per frame
 	void Update()
 	{
+		Vector2 cursorPos = Input.mousePosition;
+		Vector3 worldPos = mainCamera.ScreenToWorldPoint(cursorPos);
+		Vector3 targetPos = new Vector3(worldPos.x, worldPos.y, transform.position.z);
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
@@ -29,52 +30,44 @@ public class PlayerMovement : MonoBehaviour
 			jump = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Mouse0) && harvestable)
+		if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-			Kill();
+			Kill(targetPos);
         }
 	}
 
-	void Kill()
+	void Kill(Vector3 targetPos)
     {
-		float leapDir = harvestTarget.transform.position.x - transform.position.x;
-		controller.Move(leapSpeed*leapDir, false, false);
+		//Vector3 targetPos = harvestTarget.transform.position;
 
-		harvestTarget.GetComponent<NPCMovement>().isAlive = false;
-		foreach (OrganObject organ in harvestTarget.GetComponent<NPCMovement>().organObjects)
+		Vector2 dashDir = targetPos - transform.position;
+		dashDir = new Vector2(dashDir.x, 0);
+		controller.Dash(dashDir.normalized);
+
+		if (harvestTarget)
         {
-			
-			if (Random.Range(0f,1f) > organ.successRate) // if rolled to a success,
-            {
-				stats.AddOrgan(organ);
-				Debug.Log("Added organ: " + organ.organName);
-			}
-			else
-            {
-				continue;
-            }
-        }
+			harvestTarget.GetComponent<NPCMovement>().isAlive = false;
+		}
 	}
 
-	void FixedUpdate()
+    void FixedUpdate()
 	{
-		controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
+		controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
 		jump = false;
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Harvestable")
+        if (collision.tag == "Harvestable" && collision.GetComponent<NPCMovement>().isAlive)
         {
 			harvestTarget = collision.gameObject;
-			harvestable = true;
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Harvestable")
+
+		if (collision.tag == "OrganDrop" && stats.isBackpackFull == false && collision.GetComponent<OrganItem>().canPickup)
         {
-            harvestable = false;
-        }
+			collision.GetComponent<OrganItem>().Collect(this.gameObject);
+			collision.GetComponent<OrganItem>().canPickup = false;
+			stats.AddOrgan(collision.gameObject);
+		}
     }
 }

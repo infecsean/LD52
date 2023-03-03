@@ -18,9 +18,9 @@ public class PlayerStats : MonoBehaviour, IPurchaseItem
     public GameObject toolHud;
 
     // For beginning
-    [ReadOnly] public bool canPhone = false;
-    [ReadOnly] public bool canBackpack = false;
-    [ReadOnly] public bool canTool = false;
+    public bool canPhone = false;
+    public bool canBackpack = false;
+    public bool canTool = false;
 
     [ReadOnly] public float money = 0;
     [ReadOnly] public int backpackSize = 5;
@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour, IPurchaseItem
     [ReadOnly] public ToolObjects currentTool;
     [ReadOnly] public List<OrganObject> organsInventory;
 
-    
+    public bool isBackpackFull;
 
     void Start()
     {
@@ -44,6 +44,17 @@ public class PlayerStats : MonoBehaviour, IPurchaseItem
     {
         CheckHUD();
         CheckInput();
+
+        backpackCanvas.transform.Find("BackpackSize").GetComponent<TextMeshProUGUI>().SetText(backpackCanvas.GetComponent<BackpackUI>().organList.Count.ToString() + "/" + backpackSize);
+
+        if (backpackCanvas.GetComponent<BackpackUI>().organList.Count > backpackSize -1)
+        {
+            isBackpackFull = true;
+        }
+        else if (backpackCanvas.GetComponent<BackpackUI>().organList.Count < backpackSize)
+        {
+            isBackpackFull = false;
+        }
     }
 
     void CheckHUD()
@@ -84,6 +95,7 @@ public class PlayerStats : MonoBehaviour, IPurchaseItem
             toolCanvas.GetComponent<ToolUI>().toolsOwned.Add(toolObject);
             toolObject.owned = true;
             currentTool = toolObject;
+            AddMoney(-toolObject.price);
         }
         else
         {
@@ -91,14 +103,70 @@ public class PlayerStats : MonoBehaviour, IPurchaseItem
         }
     }
 
-    public void AddOrgan(OrganObject organObject)
+    public void AddOrgan(GameObject obj)
     {
-        backpackCanvas.GetComponent<BackpackUI>().CreateOrganItem(organObject, currentTool);
+        if (!isBackpackFull)
+        {
+            backpackCanvas.GetComponent<BackpackUI>().AddOrgan(obj);
+        }
     }
 
-    void AddMoney(float addedMoney)
+    public void AddMoney(float addedMoney)
     {
         money += addedMoney;
         phoneCanvas.transform.Find("BankPage").Find("MoneyNumber").GetComponent<TextMeshProUGUI>().SetText(money.ToString());
+    }
+
+    public void StatCashOut()
+    {
+        float organCount = backpackCanvas.GetComponent<BackpackUI>().OrganCount();
+        float totalPrice = backpackCanvas.GetComponent<BackpackUI>().CashOut();
+        BankUI.transaction transaction = new BankUI.transaction();
+        transaction.organCount = organCount;
+        transaction.sellPrice = totalPrice;
+        transaction.taxMultiplier = 0.7f;
+        transaction.smuggleFee = 1000;
+        transaction.bankFee = 0.4f;
+        phoneCanvas.transform.Find("BankPage").GetComponent<BankUI>().CashOut(transaction);
+    }
+
+    public bool SetBackpackSize(float price)
+    {
+        bool enoughMoney = false;
+        if (price < money)
+        {
+            enoughMoney = true;
+        }
+        else
+        {
+            enoughMoney = false;
+        }
+
+        if (price < 1001 && enoughMoney)
+        {
+            backpackSize = 10;
+            AddMoney(-price);
+        }
+        else if (price < 5000 && enoughMoney)
+        {
+            backpackSize = 25;
+            AddMoney(-price);
+        }
+        else if (price < 50000 && enoughMoney)
+        {
+            backpackSize = 50;
+            AddMoney(-price);
+        }
+        else if (price < 100000 && enoughMoney)
+        {
+            backpackSize = 80;
+            AddMoney(-price);
+        }
+        else
+        {
+            Debug.Log("haha, poor");
+        }
+
+        return enoughMoney;
     }
 }
